@@ -12,18 +12,28 @@ class EntreFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {  $faker=Factory::create('fr_FR');
+
         for($i=0;$i<50;$i++)
-    {$entreprise=new Entreprise();
+        {$entreprise=new Entreprise();
         $entreprise->setDesignation($faker->company);
-        $manager->persist($entreprise);}
+        $manager->persist($entreprise);
+      }
+        $manager->flush();
+
+
+        $repo = $manager->getRepository(Entreprise::class);
+
         for($i=0;$i<200;$i++)
         {
+            $randes=rand(0,50);
+            $entreprise =$repo->findOneBy(['id'=>"$randes"], []);
             $pfe=new PFE();
-            $pfe->setTitle($faker->jobtitle);
+            $pfe->setTitle($faker->title);
             $pfe->setStudentFullName($faker->name);
-            $pfe->getEntreprise(rand(1,49));
+            $pfe->getEntreprise($entreprise);
             $manager->persist($pfe);
         }
         $manager->flush();
+
     }
 }

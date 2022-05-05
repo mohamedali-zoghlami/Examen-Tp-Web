@@ -10,8 +10,11 @@
 <body>
 {% for i in enter %}
     <div class="card text-white bg-primary mb-3">
-<div class="card-header">{{ i.title }}</div>
-    <div class="card-body">{{ i.StudentFullName }}</div></div>
+<div class="card-header">PFE</div>
+    <div class="card-body">
+        <div class="card-title">{{ i.title }}</div>
+        <div class="card-text">{{ i.StudentFullName }}</div>
+    </div></div>
 
 {% endfor %}
 </body>

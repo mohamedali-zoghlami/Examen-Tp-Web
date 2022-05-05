@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PFERepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Form\FormTypeInterface;
 
 #[ORM\Entity(repositoryClass: PFERepository::class)]
 class PFE
@@ -20,7 +21,7 @@ class PFE
     private $StudentFullName;
 
     #[ORM\ManyToOne(targetEntity: Entreprise::class, inversedBy: 'pfe')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private $Entreprise;
 
     public function getId(): ?int
